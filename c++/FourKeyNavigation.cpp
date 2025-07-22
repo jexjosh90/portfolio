@@ -1,115 +1,114 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+///Simulates the nagivation of four keys (e.g. w,a,s,d)
 
-#pragma once
+#include "FourKeyNavigation.h"
 
-#include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
-#include "FourKeyNavigation.generated.h"
-#include "Components/Button.h"
-
-/**
- * Simulates the basic navigation of a four key system (e.g. w,a,s,d)
- * Can be used to navigate a screen of objects (buttons) stacked vertically and horizontally
- * UP, DOWN, LEFT, RIGHT
- * Class is made to work with Unreal Engine 5.
- * @note - objects should be in square symmetrical stacks
- * Buttons array would look like: {{B1, B2}, {B3, B4}, {B5}}
- */
-UCLASS()
-class UFSFREEDOMRUNNER_API UFourKeyNavigation : public UUserWidget
+void UFourKeyNavigation::Initialize(TArray<TArray<UButton*>> buttons, TArray<FKey> fourKeys)
 {
-	GENERATED_BODY() //Specific for Unreal Engine integration
-	
-private:
+	this->buttons = buttons;
 
-	/**
-	 * An array of pointers to Unreal Engine Button Objects
-	 */
-	TArray<TArray<UButton*>> buttons;
+	this->movementKeys = fourKeys;
 
-	/**
-	 * An array of the FOUR KEYS that simulate the four key navigation.
-	 */
-	TArray<FKey> movementKeys;
+	currentButton = buttons[0][0];
 
-	/**
-	 * The current UButton selected
-	 */
-	UButton* currentButton;
+	lateralIndex = 0;
 
-	/**
-	 * The current horizontal index of the current button
-	 */
-	int lateralIndex;
+	verticalIndex = 0;
 
-	/**
-	 * The current vertical index of the current button
-	 */
-	int verticalIndex;
+	maxVerticalIndex = 0;
 
-	/**
-	 * The maximum vertical index possible (i.e. the number of column-stacked buttons)
-	 */
-	int maxVerticalIndex;
+	// maxLaterIndex and maxVerticalIndex are calculated automatically from @buttons
+	maxLateralIndex = buttons.Num() - 1;
 
-	/**
-	 * The maximum lateral index possible (i.e. the number of side by side buttons)
-	 */
-	int maxLateralIndex;
-
-	/**
-	 * Moves the current button to the next button up.
-	 * If there is no button above, current button stays the same.
-	 * @see class comments for movement details
-	 */
-	void MoveUp();
-
-	/**
-	 * Moves the current button to the next button below.
-	 * If there is no button below, current button stays the same.
-	 * @see class comments for movement details
-	 */
-	void MoveDown();
-
-	/**
-	 * Moves the current button to the next button left.
-	 * If there is no button to the left, current button stays the same.
-	 * @see class comments for movement details
-	 */
-	void MoveLeft();
-
-	/**
-	 * Moves the current button to the next button right.
-	 * If there is no button to the right, current button stays the same.
-	 * @see class comments for movement details
-	 */
-	void MoveRight();
-
-public:
-
-	/**
-	 * A method built specifically for Unreal Engines interface to intialize the key system
-	 * with given:
-	 * @param buttons - Two dimensional array to simulate the stacked buttons. 
-	 * i.e. buttons[0] gets first row of buttons, buttons[0][0] gets first button in first row
-	 * @param fourKeys - four keys that will be used for navigation should be in order of: up, down, left, right
-	 * Current button is set to the first button of the first row
-	 */
-	void Initialize(TArray<TArray<UButton*>> buttons, TArray<FKey> fourKeys);
-
-	/**
-	 * Returns the current button
-	 */
-	UButton* GetCurrentButton();
-
-	/**
-	 * Sets the current button to the @param newButton given
-	 */
-	void SetCurrentButton(UButton* newButton);
-
-	/**
-	 * Move the current button in the respective direction given by the key input
-	 * @param input - one of the four keys that navigate the current button (up, down, left, right)
-	 */
-	void Move(FKey Input);
+	// Get maxLateralIndex by comparing all row sizes
+	for (int i = 0; i < maxLateralIndex + 1; i++)
+	{
+		if (buttons[i].Num() - 1 > maxLateralIndex)
+		{
+			maxLateralIndex = buttons[i].Num() - 1;
+		}
+	}
 };
+
+UButton* UFourKeyNavigation::GetCurrentButton()
+{
+	return currentButton;
+};
+
+void UFourKeyNavigation::SetCurrentButton(UButton* newButton)
+{
+	currentButton = newButton;
+};
+
+void UFourKeyNavigation::Move(FKey input)
+{
+	// Even though a switch statement makes sense here, if statements are kept to simplify implementation
+	// into Unreal Engine
+	if (input == movementKeys[0])
+	{
+		MoveUp();
+	}
+	else if (input == movementKeys[1])
+	{
+		MoveDown();
+	}
+	else if (input == movementKeys[2])
+	{
+		MoveLeft();
+	}
+	else if (input == movementKeys[3])
+	{
+		MoveRight();
+	}
+};
+
+void UFourKeyNavigation::MoveUp()
+{
+	if (verticalIndex > 0)
+	{
+		currentButton = buttons[lateralIndex][verticalIndex - 1];
+
+		verticalIndex--;
+	}
+}
+
+void UFourKeyNavigation::MoveDown()
+{
+	if (verticalIndex < maxVerticalIndex)
+	{
+		currentButton = buttons[lateralIndex][verticalIndex++];
+		
+		verticalIndex++;
+	}
+}
+
+void UFourKeyNavigation::MoveLeft()
+{
+	if (lateralIndex > 0)
+	{
+		if (buttons[lateralIndex - 1].Num() < verticalIndex)
+		{
+			currentButton = buttons[lateralIndex - 1][buttons[lateralIndex - 1].Num() - 1];
+		}
+		else
+		{
+			currentButton = buttons[lateralIndex - 1][verticalIndex];
+		}
+		lateralIndex--;
+	}
+}
+
+void UFourKeyNavigation::MoveRight()
+{
+	if (lateralIndex < maxLateralIndex)
+	{
+		if (buttons[lateralIndex + 1].Num() < verticalIndex)
+		{
+			currentButton = buttons[lateralIndex + 1][buttons[lateralIndex + 1].Num() - 1];
+		}
+		else
+		{
+			currentButton = buttons[lateralIndex + 1][verticalIndex];
+		}
+		lateralIndex++;
+	}
+}

@@ -1,4 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/// Simulates the basic navigation of a four key system (e.g. w,a,s,d)
+/// Can be used to navigate a screen of objects (buttons) stacked vertically and horizontally
+/// Author: Joshua Jex
+/// Date: 7/22/2023
 
 #pragma once
 

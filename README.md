@@ -4,6 +4,4 @@ This repo shows my ability to code in the following (this code is meant to be pu
 >c#;
 >java;
 >python;
->javascript/web development;
->R and other statistical software;
->Matlab;
+>web development;

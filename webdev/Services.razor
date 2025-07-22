@@ -1,0 +1,206 @@
+@page "/services"
+
+<PageTitle>Services</PageTitle>
+
+<!----------------MAIN---------------->
+<div class="main">
+    <div>
+        <p class="mainText">LEVELS OF SERVICE</p>
+        <div class="whiteLine"/>
+        <p class="descriptionText">Each service can be provided as a stand-alone package or combined to create the perfect pitch for owners and investors. Visit our <a href="/caseStudies" class="linkCaseStudies">case studies page</a> to see how we have helped our clients win projects.<u> Select a service below for more information about what we offer.</u></p>
+        <!-------------CHECK_BOXES--------------->
+        <input type="checkbox" class="serviceBox" id="serviceBoxBasic" checked="@(currentService == "basic")" @onchange="() => SelectService(services.basic)"/>
+        <input type="checkbox" class="serviceBox" id="serviceBoxAdvanced" checked="@(currentService == "advanced")" @onchange="() => SelectService(services.advanced)">
+        <input type="checkbox" class="serviceBox" id="serviceBoxPremier" checked="@(currentService == "premier")" @onchange="() => SelectService(services.premier)">
+        <input type="checkbox" class="serviceBox" id="serviceBoxEnterprise" checked="@(currentService == "enterprise")" @onchange="() => SelectService(services.enterprise)">
+        <img src="images/Home/Pricing Image.png" alt="pricing" class="pricing">
+    </div>
+    <!-------------BASIC_SERVICE_POPUP------------>
+    <div class="service" id="@ShowService(services.basic)">
+        <div class="mainText">BASIC SITE LOGISTICS PLANS & VISUALS</div>
+        <div class="whiteLine"/>
+        <div class="descriptionText" style="text-align: left; width: 90%;">
+            <p>
+                We understand that your needs and budget will vary with each project and proposal. Out basic services are specifically designed to meet any budget while still providing high-quality visual graphic that are guarranteed to impress your client and trade partners. These are generally suited best for small projects or proposals needing a quick turn around time.
+            </p>
+            <p style="text-align: center;">
+                2D BACKGROUNDS &bull; SCHEMATIC 3D SITE & BUILDING MODELS &bull; 3D EQUIPMENT/COMPONENTS &bull; BASIC GANTT CHART &bull; NARRATIVE
+            </p>
+            <p><a href="/contact">Contact</a> us for more information.</p>
+        </div>
+        <!----------------Uses carousel component to create carousel------------>
+        <Carousel ImageUrls="@BasicSiteLogisticsImgs" fileName="Portfolio/basic" ImageInfo="@BasicInfo"/>
+    </div>
+     <!-------------ADVANCED_SERVICE_POPUP------------>
+    <div class="service" id="@ShowService(services.advanced)">
+        <div class="mainText">ADVANCED SITE LOGISTICS PLANS & VISUALS</div>
+        <div class="whiteLine"/>
+        <div class="descriptionText" style="text-align: left; width: 90%;">
+            <p>
+                With our advanced services, everything you see is three-dimensional. We provide building and site models with greater detail than in the basic package. A complete 3D model sustains more flexibility in logistics communication, can move between views, and includes more specific information. These images not only instill confidence in your clients, investors, design teams, and trade partners, but are the highest quality still image logistics plan on the market.
+            </p>
+            <p style="text-align: center;">
+                3D BACKGROUND &bull;FULL 3D MODEL&bull; 3D EQUIPMENT/COMPONENTS&bull; CUSTOM GAPHICS AND VIEWS&bull; DRONE COMPATIBLE&bull; CUSTOM MODELING&bull; DIRECT PROJECT PHASING/SCHEDULE LINKING&bull; LOOPING GRAPHICS ANIMATIONS
+            </p>
+            <p><a href="/contact">Contact</a> us for more information.</p>
+        </div>
+        <!----------------Uses carousel component to create carousel------------>
+        <Carousel ImageUrls="@AdvancedSiteLogisticsImgs" fileName="Portfolio/advanced" ImageInfo="@AdvancedInfo"/>
+    </div>
+     <!-------------PREMIER_SERVICE_POPUP------------>
+    <div class="service" id="@ShowService(services.premier)">
+        <div class="mainText">PREMIER SITE LOGISTICS PLANS & VISUALS</div>
+        <div class="whiteLine"/>
+        <div class="descriptionText" style="text-align: left; width: 90%;">
+            <p>             
+                Think of our premier services as a movie premier of your project proposal! This is an opportunity to showcase your experience, knowledge, and capabilities in a captivating format. Our 4D animations are sure to set your company apart from your competitors, significantly enhance communication and understanding, win you more projects, and boost your revenue stream. We use the most recent technology and methods to ensure your success.
+            </p>
+            <p style="text-align: center;">
+                4D ANIMATION&bull; FULL 3D BUILDING&bull; SITE&bull; EQUIPMENT MODELS CUSTOM GRAPHICS & CAMERA ANGLES&bull; DRONE COMPATIBLE CUSTOM MODELING DIRECT SCHEDULE/PHASING LINKING &bull; BUILDING&bull; SITE&bull; LOGISTICS&bull; GRAPHIC&bull; AND EQUIPMENT ANIMATIONS
+            </p>
+            <p><a href="/contact">Contact</a> us for more information.</p>
+        </div>
+    </div>
+     <!-------------ENTERPRISE_SERVICE_POPUP------------>
+    <div class="service" id="@ShowService(services.enterprise)">
+        <div class="mainText">ENTERPRISE SERVICES</div>
+        <div class="whiteLine"/>
+        <div class="descriptionText" style="text-align: left; width: 90%;">
+            <p>             
+                Save time and money by becoming one of our preferred clients. In our enterprise package, we are able to establish an agreement that allows us to provide any one of our basic, advanced, or premier services at anytime. This means you never have to pass up on using our services for your projects. This gives you the assurance that we will meet your needs.
+            </p>
+            <p style="text-align: center;">
+                EVERYTHING INCLUDED IN ALL SERVICE PACKAGES FOR ANY PROJECT AT ANY TIME
+            </p>
+            <p><a href="/contact">Contact</a> us for more information.</p>
+        </div>
+    </div>
+    <!--------------HOW_WE_WORK---------->
+    <div>
+        <p class="mainText">HOW WE WORK</p>
+        <div class="whiteLine"/>
+        <p class="blueText">VBC AND BIM ARE MORE THAN CLASH DETECTION AND TRADE COORDINATION</p>
+        <p class="descriptionText">Construction and Development are complex processes involving meticulous planning, scheduling, and estimating. The complexity of any project can be a logistical nightmare with significant negative impacts if not appropriately staged. By integrating 3D models, high-powered rendering software, and gaming level animation graphics, we can consolidate the multi-faceted construction and development planning process into simple, easy-to-understand visualizations that communicate exactly how a project will get done, instilling confidence in your prospective clients, trade partners, and other project stakeholders.</p>
+        <img src="images/Home/Services Diagram - 3-01.png" alt="visualizations" class="pricing">
+    </div>
+    <!--------------5_POINT_VISION---------->
+    <div>
+        <p class="mainText">OUR 5-POINT VISION</p>
+        <div class="whiteLine"/>
+        <img src="images/Home/5-Point Vision-01-cropped.png" alt="visualizations" class="pricing">
+    </div>
+    <!--------------WHO_WE_SERVE---------->
+    <div>
+        <p class="mainText">WHO WE SERVE</p>
+        <div class="whiteLine"/>
+        <img src="images/Home/Market Sectors - New-01.png" alt="5-POINT-VISION" class="pricing">
+    </div>
+</div>
+
+@code
+{
+    /// Contains the image paths for all the images on the basic services carousel to be passed as a param to Components.Carousel.razor
+    private List<string> BasicSiteLogisticsImgs = new List<string>(Directory.GetFiles("C:/Users/jexjo/Documents/Visitecture2.0/Visitecture2.0/wwwroot/images/Portfolio/basic"));
+
+    /// Contains the image names and information on the basic services carousel to be passed as a param to Components.Carousel.razor
+    private List<(string projectName, string type, string client, string location, string year)> BasicInfo = new ()
+    {
+        ("Alice Birnery Elementary School", "Education", "C.W. Driver Companies", "San Diego, CA", "2024"),
+        ("Bird Rock Elementary School", "Education", "C.W. Driver Companies", "La Jolla, CA", "2024"),
+        ("Knob Hill Elementary School", "Education", "C.W. Driver Companies", "San Marcos, CA", "2024"),
+        ("Menifee School District", "Education", "C.W. Driver Companies", "Menifee, CA", "2024"),
+        ("Menifee School District", "Education", "C.W. Driver Companies", "Menifee, CA", "2024"),
+        ("Spotlight 29 Casino Hotel", "Hospitality", "C.W. Driver Companies", "Coachella, CA", "2024"),
+        ("Spotlight 29 Casino Hotel", "Hospitality", "C.W. Driver Companies", "Coachella, CA", "2024"),
+        ("Valencia Park Elementary School", "Education", "C.W. Driver Companies", "Fullerton, CA", "2024")
+    };
+
+    /// Contains the image paths for all the images on the advacned services carousel to be passed as a param to Components.Carousel.razor
+    private List<string> AdvancedSiteLogisticsImgs = new List<string>(Directory.GetFiles("C:/Users/jexjo/Documents/Visitecture2.0/Visitecture2.0/wwwroot/images/Portfolio/advanced"));
+
+    /// Contains the image information for all the images on the advanced services carousel to be passed as a param to Components.Carousel.razor
+    private List<(string projectName, string type, string client, string location, string year)> AdvancedInfo {get; set;} = new ()
+    {
+        ("Annandale Country Club", "Recreation", "Driver SPG", "Pasadena, CA", "2024"),
+        ("Be Well Mind OC", "Medical", "Snyder Langston", "Irvine, CA", "2023"),
+        ("Carmel Enterprises", "Multi-family", "C.W. Driver Companies", "San Marcos, CA", "2024"),
+        ("Chaminade Middle School", "Education", "C.W. Driver Companies", "Chatsworth, CA", "2024"),
+        ("CSU Palm Desert", "Education", "C.W. Driver Companies", "Palm Desert, CA", "2022"),
+        ("CSU San Marcos", "Education", "Sundt", "San Marcos, CA", "2022"),
+        ("Euro Fins", "Commercial", "C.W. Driver Companies", "San Diego, CA", "2022"),
+        ("Euro Fins", "Commercial", "C.W. Driver Companies", "San Diego, CA", "2022"),
+        ("Glenoaks Housing Glory", "Multi-family", "C.W. Driver Companies", "Pacoima, CA", "2024"),
+        ("Glenoaks Housing Glory", "Multi-family", "C.W. Driver Companies", "Pacoima, CA", "2024"),
+        ("Malibu High School - Phase 2", "Education", "C.W. Driver Companies", "Malibu, CA", "2021"),
+        ("MSI Headquarters", "Commerical", "Driver SPG", "Orange, CA", "2025"),
+        ("Ritz Carlton Residences", "Hospitality/High-Rise Residential", "Driver SPG", "Fullerton, CA", "2024"),
+        ("One Beverly Hilton", "Hospitality/High-Rise Residential", "C.W. Driver Companies", "Newport Beach, CA", "2022"),
+        ("One Beverly Hilton", "Hospitality/High-Rise Residential", "C.W. Driver Companies", "Newport Beach, CA", "2022"),
+        ("Oak Park Library", "Civic", "Good & Roberts", "Oak Park, CA", "2024"),
+        ("Rancho Coastal Human Society", "Commercial", "Good & Roberts", "Encinitas, CA", "2022"),
+        ("Santa Ana Country Club", "Recreation", "Driver SPG", "Santa Ana, CA", "2024"),
+        ("San Bernardino DBH", "Hospitality", "Snyder Langston", "Victorville, CA", "2025"),
+        ("Sunset Glenoaks", "Commercial", "Snyder Langston", "Sun Valley, CA", "2021"),
+        ("Spotlight 29 Casino Hotel", "Hospitality", "C.W. Driver Companies", "Coachella, CA", "2025"),
+        ("Santa Monica High School", "Education", "C.W. Driver Companies", "Santa Monica, CA", "2024"),
+        ("Santa Monica High School", "Education", "C.W. Driver Companies", "Santa Monica, CA", "2024"),
+        ("Santa Monica High School", "Education", "C.W. Driver Companies", "Santa Monica, CA", "2024"),
+        ("?", "?", "?", "?", "2024?"),
+        ("Spotlight 29 Casino Hotel", "Hospitality", "C.W. Driver Companies", "Coachella, CA", "2025"),
+        ("Spotlight 29 Casino Hotel", "Hospitality", "C.W. Driver Companies", "Coachella, CA", "2025"),
+        ("Spotlight 29 Casino Hotel", "Hospitality", "C.W. Driver Companies", "Coachella, CA", "2025"),
+        ("Sawtelle", "Commercial/High-Rise", "Snyder Langston", "Los Angeles, CA", "2021"),
+        ("Vermont Corridor", "Commercial/High-Rise", "Snyder Langston", "Los Angeles, CA", "2023")
+    };
+
+    /// Contains the image paths for all the images on the enterprise services carousel to be passed as a param to Components.Carousel.razor
+    private List<string> StillRenderingImgs = new List<string>(Directory.GetFiles("C:/Users/jexjo/Documents/Visitecture2.0/Visitecture2.0/wwwroot/images/Portfolio/renderings"));
+
+    /// Contains the image info for all the images on the basic services carousel to be passed as a param to Components.Carousel.razor
+    private List<(string projectName, string type, string client, string location, string year)> StillRenderingInfo {get; set;} = new ()
+    {
+        ("Midway Luxury Townhomes", "Residential", string.Empty, "Midway, UT", string.Empty),
+        ("Be Well Mind OC", "Medical", "Snyder Langston", "Irvine, CA", "2023"),
+        ("Euro Fins", "Commercial", "C.W. Driver Companies", "Los Angeles, CA", "2023"),
+        ("Midway Luxury Townhomes", "Residential", string.Empty, "Midway, UT", string.Empty),
+        ("Highland Homes", "Residential", string.Empty, "Highland, UT", "2022"),
+        ("NCTD Oceanside", "Multi-Family/Commercial", "C.W. Driver Companies", "Oceanside, CA", "2023"),
+        ("Highland Homes", "Residential", string.Empty, "Highland, UT", "2022"),
+        ("Rancho Coastal Human Society", "Commercial/High-Rise", "Snyder Langston", "Los Angeles, CA", "2023"),
+        ("?", "?", "?", "?", "?")
+    };
+
+    /// Defines what service is currently marked as the chosen service.
+    private static string currentService = string.Empty;
+ 
+    /// Stores the names of the services as strings because blazor elements cannot accept strings as arguments.
+    private (string basic, string advanced, string premier, string enterprise) services = 
+        ("basic", "advanced", "premier", "enterprise");
+
+    private string zoomedStatus = "imageSelect";
+
+    /// Checks if the given service matches the current service selected. This acts as a way to 
+    /// to select a new service and unselect the current service if that is what was inputted. 
+    /// NOTE: method is public so Components.Layout.MainLayout.razor can direct users to specific
+    /// services from the global navigation bar.
+    public static void SelectService(string newService)
+    {
+        if (currentService == newService)
+        {
+            // No service is defined as a CSS class (see Services.Razor.css.noService)
+            currentService = "noService"; 
+        }
+        else
+        {
+            currentService = newService;
+        }
+    }
+
+    /// Uses checks if the checked current service matches the given service.
+    /// The name of the service to check against currentService.
+    /// The name of the service if "service" is equal to currentService.
+    private string ShowService(string service)
+    {
+        return service == currentService ? service: "noService";
+    }
+}

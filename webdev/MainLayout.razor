@@ -1,0 +1,174 @@
+﻿@inherits LayoutComponentBase
+
+<!-- Visitecture logo and navigation bar -->
+<header class="header">
+    <nav class="navbar">
+        <img src="images/New Logo - Name (V Beginning white glow)-01.png" alt="Visitecture" class="logo">
+        
+            <!-- Navigation bar has non drop down pages on top and drop down pages on bottom -->
+            <div style="display: flex; flex-direction: column;">
+                <ul class="navlist">
+
+                    <!-- Home -->
+                    <!-- Selected property makes the current navigation item underlined so the user can know what page they are currently on. -->
+                    <li><a href="/" @onclick="() => selected = navBar.home" class="@select("home")">Home</a></li>
+                    
+                    <!-- About -->
+                    <!-- See Home list item for purpose of selected property -->
+                    <li class=""><a href="/about" @onclick="() => selected = navBar.about" class="@select("about")">About</a></li>
+                    
+                    <!-- Contact -->
+                    <!-- See Home list item for purpose of selected property -->
+                    <li><a href="/contact" @onclick="() => selected = navBar.contact" class="@select("contact")">Contact</a></li>
+                    
+                    <!-- Case Studies -->
+                    <!-- See Home list item for purpose of selected property -->
+                    <li><a href="caseStudies" @onclick="() => selected = navBar.caseStudies" class="@select("caseStudies")">Case Studies</a></li>
+                    
+                    <!-- Facebook Link -->
+                    <li>
+                        <a href="https://www.facebook.com/people/Visitecture/61569435287691/" target="_blank" rel="noopener noreferrer">
+                            <img src="images\Facebook_Logo_Secondary.png" alt="Facebook" class="socialIcon">
+                        </a>
+                    </li>
+                    
+                    <!-- Linked In Link -->
+                    <li>
+                        <a href="https://www.linkedin.com/company/visitecture/" target="_blank" rel="noopener noreferrer">
+                            <img src="images\brand-homepg-please-note-icon-dsk-v01.png.original.png" alt="Linked In" class="socialIcon">
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Dropdown nagivation items -->
+                <ul class="navlist">
+                    
+                    <!-- Services -->
+                    <li class="dropdown"><a href="/services" @onclick="() => selected = navBar.services" class="@select("services")">Services
+                        <!-- Arrow is an animation to inditcate the nagivation item is a drop down item. See: MainLayout.Razor.CSS.arrow -->
+                        <span class="arrow">▼</span></a>
+                        <ul class="dropdownMenu">
+                            <!-- On clicks access the public method on the services page to directly take the user to the service they select. -->
+                            <!-- Selected property makes the current navigation item (not dropdown item) underlined so the user can know what page they are currently on. -->
+                            <li><a href="/services" @onclick="() => {Pages.Services.SelectService(services.enterprise); selected = navBar.services;}">>Enterprise Services</a></li>
+                            <li><a href="/services" @onclick="() => {Pages.Services.SelectService(services.premier); selected = navBar.services;}">>Premier 4D Site Logistics</a></li>
+                            <li><a href="/services" @onclick="() => {Pages.Services.SelectService(services.advanced); selected = navBar.services;}">>Advanced Site Logistics</a></li>
+                            <li><a href="/services" @onclick="() => {Pages.Services.SelectService(services.basic); selected = navBar.services;}">>Basic Site Logistics</a></li>
+                            <li><a href="/portfolio#marketing">>Construction Marketing</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Site Logistics -->
+                    <li class="dropdown"><a href="/siteLogistics" @onclick="() => selected = navBar.siteLogistics" class="@select("portfolio")">Site Logistics and Phasing Plans
+                        <!-- See Services dropdown -->
+                        <span class="arrow">▼</span></a>
+                        <ul class="dropdownMenu">
+                            <!-- See: services drop down (Selected property) -->
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Multi-family</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Education</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Recreation</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Medical</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Commerical</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Hospitality</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>High-Rise</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Construction Simulations -->
+                    <li class="dropdown"><a href="/simulations" @onclick="() => selected = navBar.simulations" class="@select("portfolio")">4D Construction Simulations
+                        <!-- See Services dropdown -->
+                        <span class="arrow">▼</span></a>
+                        <ul class="dropdownMenu">
+                            <!-- See: services drop down (Selected property) -->
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Multi-family</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Education</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Recreation</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Medical</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Commerical</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>Hospitality</a></li>
+                            <li><a href="#" @onclick="() => selected = navBar.siteLogistics">>High-Rise</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+    </nav>
+</header>
+
+<!-- This is where the main body of each page will go. -->
+<main>
+    @Body
+</main>
+
+<!-- Footer displayed under every page -->
+<footer class="footer">
+    <div class="footerGrid">
+        <div>
+            <!-- Company title -->
+            <p style="font-size: 20px;"> <span style="font-size: 35px;">V</span>ISITECTURE</p>
+
+            <!-- Company slogan -->
+            <p class="footerText">High-quality site logistics, visualization, marketing and communication integrations for the construction and real-estate industries.</p>
+        </div>
+
+        <div>
+            <!-- Company logo -->
+            <a href="https://www.visitecture.com/"><img src="images\New Logo - No Name (Gem)-01.png" alt="Visitecture" class="logoFooter"></a>
+            <p>&copy; 2025 Visitecture. All rights reserved.</p>
+        </div>
+
+        <div>
+            <!-- Facebook link -->
+            <a href="https://www.facebook.com/people/Visitecture/61569435287691/" target="_blank" rel="noopener noreferrer">
+                <img src="images\Facebook_Logo_Secondary.png" alt="Facebook" class="socialIcon">
+            </a>
+
+            <!-- Creates spacing between Facebook and Linked In logos -->
+            &nbsp;&nbsp; 
+
+            <!-- Linked In link -->
+            <a href="https://www.linkedin.com/company/visitecture/" target="_blank" rel="noopener noreferrer">
+                <img src="images\brand-homepg-please-note-icon-dsk-v01.png.original.png" alt="Linked In" class="socialIcon">
+            </a>
+
+            <!-- President and vice president contact info -->
+            <br> <br>
+                435-919-7683<br>
+                christian@visitecture.com<br><br>
+                435-314-9936<br>
+                mckay@visitecture.com
+        </div>
+    </div>
+</footer>
+
+@code
+{
+    /// <summary>
+    /// NOTE: This version of blazor does not allow strings to be directly passed in through html.
+    /// This tuple holds the names of all the services so they can be selected from the UI.
+    /// </summary>
+    private (string basic, string advanced, string premier, string enterprise) services = 
+        ("basic", "advanced", "premier", "enterprise");
+
+    /// <summary>
+    /// NOTE: see services note.
+    /// This tuple holds names of all the site pages so they can be selected from the UI.
+    /// </summary>
+    private (string home, string services, string siteLogistics, string simulations, string about, string contact, string caseStudies) navBar = 
+        ("home", "services", "siteLogistics", "simulations", "about", "contact", "caseStudies");
+    
+    /// <summary>
+    /// This variable hold the name of the current selected page so it can be underlined by CSS.
+    /// Home is default page.
+    /// </summary>
+    private static string selected = "home";
+
+
+    /// <summary>
+    /// This method is used to set the CSS class of current page's navigation bar item.
+    /// See: MainLayout.razor.css.navlistSelect
+    /// </summary>
+    private string select(string navItem)
+    {
+        return selected == navItem ? "navlistSelect" : string.Empty;
+    }
+}                                               

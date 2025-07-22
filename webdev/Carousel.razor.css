@@ -1,0 +1,138 @@
+    .carouselLayout{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 3rem;
+        background-color: none;
+        align-items: center;
+        text-align: center;
+        width: inherit;
+    }
+
+    .centerMark{
+        position: fixed;
+        top: 64%;
+        left: 50%;
+        width: 70vw;
+        height: auto;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10; 
+    }
+
+    .blurBackground{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        background-color: rgba(0, 0, 0, 0.849);
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .carousel{
+        max-width: fit-content;
+        position: relative;
+        margin: 0 auto;
+        height: auto;
+        justify-content: center;
+        display: flex;
+        aspect-ratio: 16/9;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        border-radius: 10rem;
+    }
+
+    .slider{
+        display: flex;
+        aspect-ratio: 16/9;
+        overflow-x: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        border-radius: 2rem;
+        border: none;
+    }
+
+    .slider img{
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .arrow{
+        cursor: pointer;
+        font-size: 30px;
+        background-color: rgba(0, 0, 0, 0.014);
+        color: white;
+        width: 20px;
+        border: none;
+    }
+
+    .arrow:hover{
+        color:rgb(85, 173, 255);
+    }
+
+    .slider:hover{
+        filter: brightness(0.8);
+        cursor: pointer;
+    }
+
+    .infoBox{
+        margin-top: 1rem;
+        display: block;
+        position: absolute;
+        width: 40%;
+        left: 30%;
+        background-color: rgba(37, 37, 37, 0.856);
+        color: white;
+        text-align: center;
+        z-index: 10;
+        border-radius: 1rem;
+        opacity: 0;
+        font-size: 20px;
+    }
+
+    .infoBoxUp{
+        margin-top: -12vh;
+        display: flex;
+        position: absolute;
+        height: 10vh;
+        width: 100%;
+        background-color: rgba(37, 37, 37, 0.692);
+        color: white;
+        text-align: center;
+        justify-content: center;
+        z-index: 10;
+        border-radius: 1rem;
+        font-size: 25px;
+        padding: 5px;
+        align-items: center;
+        margin-bottom: -1rem;
+    }
+
+    .spacedText{
+        padding: 1rem;
+    }
+
+    .slider:hover .infoBox{
+        opacity: 1;
+    }
+
+    .xButton{
+        position: absolute;
+        font-size: 40px;
+        background-color: rgba(0, 0, 0, 0.007);
+        border: none;
+        opacity: 1;
+        color: white;
+        left: 100%;
+        bottom: 100%;
+    }
+
+    .noXButton{
+        opacity: 0;
+        z-index: -1;
+    }

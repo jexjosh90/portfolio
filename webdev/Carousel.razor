@@ -1,0 +1,126 @@
+@using System.Threading
+
+<div>
+    <!-- Image Display Counter -->
+    <div style="text-align: center; color:white;">
+        @currentIndexNormal / @ImageUrls.Count
+    </div>
+    <!-- Carousel -->
+    <div class="@blurred"></div>
+    <div class="@enlarged">
+        <div class="carouselLayout">
+            <!-- Left Button -->
+            <button class="arrow" @onclick="Prev">⟨</button>
+            <!-- Sliding image -->
+            <div class="carousel">
+                <button class="slider" @onclick="MoveInfoBoxUp">
+                    <!-- Each image is strung together to form one long image -->
+                    @foreach(string img in ImageUrls)
+                    {
+                        string path = $"images/{fileName}/{Path.GetFileName(img)}";
+                        <img src="@path" alt="@path" style="transform: translateX(-@(currentIndex * 100)%);"/>
+                    }
+                    <!-- The box that hold image information. See code for more info. -->
+                    <div class="@infoBox">
+                        <p class="spacedText">@ImageInfo[currentIndex].projectName</p>
+                        <p class="spacedText">@ImageInfo[currentIndex].type</p>
+                        <p class="spacedText">@ImageInfo[currentIndex].client</p>
+                        <p class="spacedText">@ImageInfo[currentIndex].location</p>
+                        <p class="spacedText">@ImageInfo[currentIndex].year</p>
+                    </div>
+                </button>
+            </div>
+            <!-- Right Button -->
+            <button class="arrow" @onclick="Next">⟩</button>
+        </div>
+        <button class="@xButton" @onclick="InfoBoxDown">X</button>
+    </div>
+</div>
+
+@code{
+
+    [Parameter]
+    public string fileName { get; set; } = string.Empty;
+
+    [Parameter]
+    public List<string> ImageUrls { get; set; } = new List<string>();
+
+    [Parameter]
+    public List<(string projectName, string type, string client, string location, string year)> ImageInfo {get; set;} = new ();
+
+    private int currentIndex = 0;
+
+    private int currentIndexNormal = 1;
+
+    private string infoBox = "infoBox";
+
+    private string enlarged = string.Empty;
+
+    private string xButton = "noXButton";
+
+    private string blurred = string.Empty;
+
+    private Timer? Timer;
+
+    protected override void OnInitialized()
+    {
+        Timer = new Timer(Slide, null, 0, 5000);
+    }
+    private void Slide(object? state)
+    {
+        SlideForward();
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void SlideForward()
+    {
+        currentIndex = (currentIndex + 1) % ImageUrls.Count;
+
+        currentIndexNormal = currentIndex + 1;
+    }
+
+    private void Next()
+    {  
+        Timer!.Dispose();
+
+        SlideForward();
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void Prev()
+    {
+        Timer!.Dispose();
+
+        currentIndex = (currentIndex - 1 + ImageUrls.Count) % ImageUrls.Count;
+
+        currentIndexNormal = currentIndex + 1;
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void MoveInfoBoxUp()
+    {
+        xButton = "xButton";
+
+        infoBox = "infoBoxUp";
+
+        enlarged = "centerMark";
+
+        blurred = "blurBackground";
+
+        Timer!.Dispose();
+    }
+
+    private void InfoBoxDown()
+    {
+        infoBox = "infoBox";
+
+        enlarged = string.Empty;
+
+        xButton = "noXButton";
+
+        blurred = string.Empty;
+    }
+}
